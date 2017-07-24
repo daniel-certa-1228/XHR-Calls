@@ -17,9 +17,15 @@ bigDataRequest.addEventListener("error", bigDataFailed);
 
 function bigDataComplete(event){
 	console.log( "The BIG DATA has loaded");
-	let bigData = JSON.parse(event.target.responseText);
-	console.log( "Time of BIG DATA", Date.now() - startTime );
-	console.log( "bigData", bigData );
+	
+	if (event.target.status === 200) {
+		let bigData = JSON.parse(event.target.responseText);
+		console.log( "Time of BIG DATA", Date.now() - startTime );
+		console.log( "bigData", bigData );
+	} else {
+		console.log( "FAILURE" );
+	}
+
 }
 
 function bigDataFailed(event) {
